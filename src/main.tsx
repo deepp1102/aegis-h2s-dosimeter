@@ -14,16 +14,12 @@ createRoot(document.getElementById('root')!).render(
 
 if ('serviceWorker' in navigator) {
   if (import.meta.env.PROD) {
-    // Offline app shell: production builds only.
     window.addEventListener('load', () => {
       navigator.serviceWorker
         .register(`${import.meta.env.BASE_URL}sw.js`)
-        .catch(() => {
-          // Offline support is optional; ignore registration failures.
-        });
+        .catch(() => {});
     });
   } else {
-    // Dev server: remove any stale service worker and caches.
     navigator.serviceWorker.getRegistrations().then(async (regs) => {
       if (regs.length === 0) return;
 
