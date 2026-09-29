@@ -16,18 +16,27 @@ if ('serviceWorker' in navigator) {
   if (import.meta.env.PROD) {
     // Offline app shell: production builds only.
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch(() => {
-        /* offline support is a nice-to-have; ignore registration failures */
-      });
+      navigator.serviceWorker
+        .register(`${import.meta.env.BASE_URL}sw.js`)
+        .catch(() => {
+          // Offline support is optional; ignore registration failures.
+        });
     });
   } else {
-    // Dev server: a cached worker from an earlier run serves stale source files
-    // and causes a blank page. Remove it and its caches.
+    // Dev server: remove any stale service worker and caches.
     navigator.serviceWorker.getRegistrations().then(async (regs) => {
       if (regs.length === 0) return;
-      await Promise.all(regs.map((r) => r.unregister()));
+
+      await Promise.all(
+        regs.map((registration) => registration.unregister())
+      );
+
       const keys = await caches.keys();
-      await Promise.all(keys.map((k) => caches.delete(k)));
+
+      await Promise.all(
+        keys.map((key) => caches.delete(key))
+      );
+
       location.reload();
     });
   }
