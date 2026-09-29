@@ -1,81 +1,165 @@
-# Aegis H₂S 🛡️
+# Aegis H₂S
 
-> **Passive H₂S Exposure-Dosimeter Wristband**
+> **Passive H₂S Exposure-Dosimeter Wristband**  
+> **Team KaizenNoir | Smart India Hackathon 2026**
 
-Aegis H₂S is a prototype passive exposure-dosimeter system designed to provide a low-cost, battery-free method for recording **cumulative hydrogen sulfide (H₂S) exposure over a monitoring period**.
+Aegis H₂S is a prototype, battery-free wearable exposure-dosimeter designed to provide **shift-level cumulative Hydrogen Sulfide (H₂S) exposure estimation** using a passive colorimetric sensing element and a smartphone-based analysis workflow.
 
-The system combines a disposable wearable sensing band with a smartphone-based image-analysis workflow. The prototype uses a reactive silver-based sensing element, a fixed reference patch, a protective sensing window, and a smartphone camera to estimate an exposure-dose range.
-
-The system is designed as a **passive exposure-recording aid** and is intended to **complement—not replace—certified real-time H₂S alarms, PPE, and site safety procedures**.
-
----
-
-## 🎯 Problem Statement
-
-Hydrogen sulfide (H₂S) is a hazardous gas that can be encountered in industrial environments such as:
-
-- Oil & gas facilities
-- Refineries
-- Wastewater treatment plants
-- Sewage and drainage systems
-- Chemical processing facilities
-- Storage and confined-space environments
-
-Conventional H₂S safety systems generally focus on **real-time gas detection and alarms**.
-
-However, there is a complementary need for a simple and low-cost mechanism that can help record **cumulative exposure over a work shift or defined monitoring period**.
-
-Aegis H₂S explores a passive, wearable approach in which exposure produces a measurable visual change in a sensing element. A smartphone can subsequently capture and analyse that change.
+The system is designed as a low-cost, disposable supplementary exposure-monitoring solution that complements certified H₂S alarms, PPE, and existing site safety procedures.
 
 ---
 
-# 💡 Proposed Solution
+## 🎯 Problem
 
-Aegis H₂S consists of a lightweight disposable wristband containing:
+Hydrogen Sulfide (H₂S) is a hazardous gas encountered in industrial environments. Conventional gas detection systems primarily focus on real-time concentration and alarm events, while there is a need for a simple way to record **cumulative exposure over a monitoring period**.
 
-- Reactive Ag/Ag₂S sensing strip
-- Fixed neutral/reference patch
-- Expiry indicator
+---
+
+## 💡 Proposed Solution
+
+Aegis H₂S combines:
+
+- Passive **Ag/Ag₂S reactive sensing strip**
+- Fixed neutral reference patch
 - ePTFE protective sensing window
-- QR/unique band identification area
+- Expiry indicator
 - Breakaway wristband clasp
-- Woven wearable strap
+- Smartphone camera-based colour analysis
+- ΔE2000 colour-difference calculation
+- Dose-range and confidence estimation
+- Offline-first local record storage
+- Exportable exposure records
 
-During the monitoring period, the reactive sensing element responds progressively to H₂S exposure.
+---
 
-At the end of the monitoring period, the sensing region can be photographed using a standard smartphone camera.
-
-The application then performs image processing and colour analysis to estimate an exposure-dose range with a confidence indication.
-
-### Core Concept
+## ⚙️ How It Works
 
 ```text
 H₂S Exposure
-      │
-      ▼
-Reactive Ag sensing element
-      │
-      ▼
-Progressive colour change
-      │
-      ▼
-Smartphone camera
-      │
-      ▼
-Image quality & ROI detection
-      │
-      ▼
-Colour normalization
-      │
-      ▼
-ΔE2000 colour difference
-      │
-      ▼
-Calibration mapping
-      │
-      ▼
-Estimated exposure-dose range
-      │
-      ▼
-Result + confidence + record
+     ↓
+Reactive Sensing Strip
+     ↓
+Colour Change
+     ↓
+Smartphone Image Capture
+     ↓
+ROI & Image Quality Analysis
+     ↓
+Colour Extraction
+     ↓
+ΔE2000 Calculation
+     ↓
+Calibration Model
+     ↓
+Estimated Dose Range + Confidence
+     ↓
+Local Record & History
+```
+🚀 Key Features
 
+* Battery-free passive wristband
+* H₂S-specific colorimetric sensing concept
+* Smartphone-based analysis without proprietary reader hardware
+* Cumulative exposure estimation
+* Dose range with confidence instead of unsupported exact values
+* Offline-first workflow
+* Local history and CSV/JSON export
+* Prototype calibration and demo presets
+* Privacy-conscious Band ID workflow
+
+⸻
+
+🖥️ Web Application
+
+The accompanying web application provides:
+
+* Dashboard
+* Wristband management
+* Image scanning
+* Exposure result visualization
+* Calibration workflow
+* Science & methodology
+* System architecture
+* Exposure history
+* Data export
+* Settings and safety information
+
+⸻
+
+🧪 Current Status
+
+Implemented
+
+* Complete web-app workflow
+* Image processing and colour analysis
+* ROI-based sensing analysis
+* ΔE2000 calculation
+* Prototype/demo calibration model
+* Dose range and confidence output
+* Local storage
+* History and data export
+* Demo presets and validation pipeline
+
+Planned / Requires Validation
+
+* Controlled H₂S laboratory calibration
+* Multi-condition temperature/RH calibration
+* Cross-gas interference testing
+* Sensing-film thickness optimization
+* Shelf-life and environmental durability testing
+* Physical clasp-force validation
+* Field validation
+
+Important: Temperature/RH compensation is planned for future multi-condition calibration and is not currently applied by the application.
+
+⸻
+
+🛠️ Technology Stack
+
+* Frontend: React + TypeScript
+* Styling: CSS
+* Image Processing: Browser-based image analysis
+* Storage: IndexedDB / Local Storage
+* Data Export: CSV / JSON
+* Deployment: Progressive Web App (PWA)
+
+⸻
+
+## ▶️ Run Locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/deepp1102/aegis-h2s-dosimeter.git
+cd aegis-h2s-dosimeter
+
+**Install dependencies:**
+npm install
+
+**Start development server:**
+npm run dev
+
+**Build for production:**
+npm run build
+
+🔬 Validation & Testing
+
+The current prototype has been tested through:
+npx tsc -b
+npx oxlint
+npm run build
+npm run test:pipeline
+
+The demo pipeline includes 10 predefined test presets.
+```
+⚠️ Safety & Validation Disclaimer
+
+Aegis H₂S is a prototype exposure-dosimeter concept. It is not a certified real-time H₂S alarm and does not replace certified gas detection systems, PPE, site procedures, or regulatory requirements.
+
+The dose-mapping model is currently simulated/prototype calibration and requires controlled laboratory validation before real-world deployment.
+
+⸻
+
+🔗 Project Links
+
+🌐 Website: 
